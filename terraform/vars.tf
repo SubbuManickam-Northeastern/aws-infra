@@ -35,3 +35,35 @@ variable "PublicRouteTableName" {
 variable "PrivateRouteTableName" {
   default = "PrivateRouteTable"
 }
+
+variable "ami" {
+  default = "ami-0285509529b7234dd"
+}
+
+variable "ec2Key" {
+  default = "ec2-aws"  
+}
+
+variable "ec2Volume" {
+  default = "gp2"  
+}
+
+variable "ec2Size" {
+  default = 50
+}
+
+variable "ec2Name" {
+  default = "webapp-ec2-server"  
+}
+
+variable "amiInstanceType" {
+  default = "t2.micro"
+}
+
+variable "securityGroupName" {
+  default = "application_security_group"
+}
+
+variable "securityGroupDescription" {
+  default = "ami ec2 application security group"
+}
