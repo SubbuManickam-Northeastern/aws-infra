@@ -37,7 +37,7 @@ variable "PrivateRouteTableName" {
 }
 
 variable "ami" {
-  default = "ami-0285509529b7234dd"
+  default = "ami-00d1054d6853b2eee"
 }
 
 variable "ec2Key" {
