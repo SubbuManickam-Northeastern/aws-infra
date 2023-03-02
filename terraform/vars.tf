@@ -37,15 +37,15 @@ variable "PrivateRouteTableName" {
 }
 
 variable "ami" {
-  default = "ami-00d1054d6853b2eee"
+  default = "ami-0acb315f340e07b09"
 }
 
 variable "ec2Key" {
-  default = "ec2-aws"  
+  default = "ec2-aws"
 }
 
 variable "ec2Volume" {
-  default = "gp2"  
+  default = "gp2"
 }
 
 variable "ec2Size" {
@@ -53,17 +53,113 @@ variable "ec2Size" {
 }
 
 variable "ec2Name" {
-  default = "webapp-ec2-server"  
+  default = "webapp-ec2-server"
 }
 
 variable "amiInstanceType" {
   default = "t2.micro"
 }
 
-variable "securityGroupName" {
+variable "applicationSecurityGroupName" {
   default = "application_security_group"
 }
 
-variable "securityGroupDescription" {
+variable "applicationSecurityGroupDescription" {
   default = "ami ec2 application security group"
+}
+
+variable "databaseSecurityGroupName" {
+  default = "database_security_group"
+}
+
+variable "databaseSecurityGroupDescription" {
+  default = "ec2 database security group"
+}
+
+variable "s3_bucket_rule_id" {
+  default = "ia_transition_rule"
+}
+
+variable "rds_parameter_group_name" {
+  default = "rds-parameter-group"
+}
+
+variable "rds_parameter_group_description" {
+  default = "Custom parameter group for rds instance"
+}
+
+variable "rds_subnet_group_name" {
+  default = "rds_subnet_group"
+}
+
+variable "rds_parameter_group_family" {
+  default = "mysql8.0"
+}
+
+variable "rds_engine" {
+  default = "mysql"
+}
+
+variable "rds_instance_class" {
+  default = "db.t3.micro"
+}
+
+variable "rds_identifier" {
+  default = "csye6225"
+}
+
+variable "rds_username" {
+  default = "csye6225"
+}
+
+variable "rds_password" {
+  default = "csye6225rdspassword"
+}
+
+variable "rds_db_name" {
+  default = "csye6225"
+}
+
+variable "rds_allocated_storage" {
+  default = 10
+}
+
+variable "s3_bucket_acl" {
+  default = "private"
+}
+
+variable "webapp_transition_status" {
+  default = "Enabled"
+}
+
+variable "webapp_transition_days" {
+  default = 30
+}
+
+variable "webapp_transition_storage" {
+  default = "STANDARD_IA"
+}
+
+variable "server_port" {
+  default = "8080"
+}
+
+variable "ec2_iam_policy_name" {
+  default = "WebAppS3"
+}
+
+variable "ec2_iam_policy_description" {
+  default = "EC2 S3 access"
+}
+
+variable "ec2_iam_role_name" {
+  default = "EC2-CSYE6225"
+}
+
+variable "ec2_iam_role_description" {
+  default = "EC2 IAM role"
+}
+
+variable "iam_instance_profile_name" {
+  default = "ec2_s3_access_profile"
 }
