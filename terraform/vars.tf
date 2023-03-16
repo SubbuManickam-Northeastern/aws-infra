@@ -37,7 +37,7 @@ variable "PrivateRouteTableName" {
 }
 
 variable "ami" {
-  default = "ami-0acb315f340e07b09"
+  default = "ami-0380c72e5254e54b2"
 }
 
 variable "ec2Key" {
@@ -113,7 +113,7 @@ variable "rds_username" {
 }
 
 variable "rds_password" {
-  default = "csye6225rdspassword"
+  default = ""
 }
 
 variable "rds_db_name" {
@@ -162,4 +162,8 @@ variable "ec2_iam_role_description" {
 
 variable "iam_instance_profile_name" {
   default = "ec2_s3_access_profile"
+}
+
+variable "hosted_zone" {
+  default = "Z00669351FYNF92T1SBKI"
 }

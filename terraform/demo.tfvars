@@ -15,3 +15,9 @@ GatewayName = "InternetGateway1"
 PublicRouteTableName = "PublicRouteTable1"
 
 PrivateRouteTableName = "PrivateRouteTable1"
+
+ami = "ami-05c4ae0b43b4c73b2"
+
+rds_password = "csye6225rdspassword"
+
+hosted_zone = "Z0531587NN4ENOGJF9RY"
