@@ -22,9 +22,13 @@ resource "aws_instance" "webapp_ec2" {
     sudo echo "spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect" >> /tmp/userdata.properties
     sudo echo "spring.jpa.hibernate.ddl-auto=update" >> /tmp/userdata.properties
     sudo echo "s3.bucketName=${aws_s3_bucket.webapp_bucket.id}" >> /tmp/userdata.properties
+    sudo echo "publish.metrics=${var.publish_metrics}" >> /tmp/userdata.properties
+    sudo echo "metrics.server.hostname=${var.metrics_server_hostname}" >> /tmp/userdata.properties
+    sudo echo "metrics.server.port=${var.metrics_server_port}" >> /tmp/userdata.properties
     sudo systemctl daemon-reload
     sudo systemctl start java_app.service
     sudo systemctl enable java_app.service
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/tmp/cloudwatch_config.json -s
   EOF
 
   tags = {
@@ -125,6 +129,11 @@ resource "aws_iam_role" "ec2_user" {
 resource "aws_iam_role_policy_attachment" "EC2_S3_role_attachment" {
   role       = aws_iam_role.ec2_user.name
   policy_arn = aws_iam_policy.ec2_webapp_s3.arn
+}
+
+resource "aws_iam_role_policy_attachment" "cloudwatch_policy_attachment" {
+  role       = aws_iam_role.ec2_user.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
 
 resource "aws_iam_instance_profile" "ec2_s3_access_profile" {

@@ -16,7 +16,7 @@ PublicRouteTableName = "PublicRouteTable1"
 
 PrivateRouteTableName = "PrivateRouteTable1"
 
-ami = "ami-0380c72e5254e54b2"
+ami = "ami-0b6e345b5d9dc2162"
 
 rds_password = "csye6225rdspassword"
 
