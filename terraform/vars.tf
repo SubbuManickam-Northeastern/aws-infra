@@ -167,3 +167,15 @@ variable "iam_instance_profile_name" {
 variable "hosted_zone" {
   default = "Z00669351FYNF92T1SBKI"
 }
+
+variable "publish_metrics" {
+  default = "true"
+}
+
+variable "metrics_server_hostname" {
+  default = "localhost"
+}
+
+variable "metrics_server_port" {
+  default = "8125"
+}
