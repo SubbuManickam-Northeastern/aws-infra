@@ -1,7 +1,10 @@
-resource "aws_route53_record" "a_record_setup" {
+resource "aws_route53_record" "lb_alias" {
   zone_id = var.hosted_zone
   name    = ""
   type    = "A"
-  records = ["${aws_instance.webapp_ec2.public_ip}"]
-  ttl     = 60
+  alias {
+    name                   = aws_lb.load_balancer.dns_name
+    zone_id                = aws_lb.load_balancer.zone_id
+    evaluate_target_health = true
+  }
 }
