@@ -179,3 +179,39 @@ variable "metrics_server_hostname" {
 variable "metrics_server_port" {
   default = "8125"
 }
+
+variable "lb_security_group_name" {
+  default = "load-balancer-security-group"
+}
+
+variable "lb_security_group_description" {
+  default = "load balancer security group"
+}
+
+variable "asg_name" {
+  default = "webapp-asg"
+}
+
+variable "scale_up_policy_name" {
+  default = "cpu-scale-up-policy"
+}
+
+variable "scale_down_policy_name" {
+  default = "cpu-scale-down-policy"
+}
+
+variable "asg_policy_adjustment_type" {
+  default = "ChangeInCapacity"
+}
+
+variable "asg_policy_type" {
+  default = "SimpleScaling"
+}
+
+variable "lb_name" {
+  default = "webapp-lb"
+}
+
+variable "alb_name" {
+  default = "webapp-lb-target-group"
+}
