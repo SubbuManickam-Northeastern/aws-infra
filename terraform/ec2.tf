@@ -4,18 +4,18 @@ resource "aws_security_group" "application_security_group" {
   vpc_id      = aws_vpc.awsVPC.id
 
   ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    description     = "SSH"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
     security_groups = [aws_security_group.load_balancer_security_group.id]
   }
 
   ingress {
-    description = "Java"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
+    description     = "Java"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
     security_groups = [aws_security_group.load_balancer_security_group.id]
   }
 

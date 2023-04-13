@@ -26,6 +26,9 @@ resource "aws_db_instance" "webapp_rds" {
   parameter_group_name = aws_db_parameter_group.rds_parameter_group.id
 
   vpc_security_group_ids = [aws_security_group.database_security_group.id]
+
+  storage_encrypted = true
+  kms_key_id = aws_kms_key.rds_encryption.arn
 }
 
 resource "aws_security_group" "database_security_group" {
@@ -43,5 +46,54 @@ resource "aws_security_group" "database_security_group" {
 
   tags = {
     "Name" = var.databaseSecurityGroupName
+  }
+}
+
+resource "aws_kms_key" "rds_encryption" {
+  description             = "RDS encryption key"
+  deletion_window_in_days = 15
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          AWS = "*"
+        }
+        Action = [
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:DescribeKey",
+          "kms:ScheduleKeyDeletion"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid       = "Allow key owner to update key policy"
+        Effect    = "Allow"
+        Principal = {
+          AWS = "*"
+        }
+        Action    = [
+          "kms:PutKeyPolicy",
+          "kms:Create*",
+          "kms:Describe*",
+          "kms:Enable*",
+          "kms:List*",
+          "kms:Update*",
+          "kms:Revoke*",
+          "kms:Disable*",
+          "kms:Get*",
+          "kms:Delete*",
+          "kms:ScheduleKeyDeletion"
+        ]
+        Resource  = "*"
+      }
+    ]
+  })
+  tags = {
+    "Name" = "rds-encryption"
   }
 }
